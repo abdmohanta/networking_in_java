@@ -66,3 +66,54 @@ Client connects using IP + port
 Data flows using input/output streams
 
 
+2. UDP (User Datagram Protocol)
+
+UDP is connectionless and faster but not reliable.
+
+Uses:  DatagramSocket 
+       DatagramPacket
+
+Client sends packet → server receives packet (no connection setup required)
+
+Example :
+
+    package com.example.network;
+
+    import java.net.*;
+
+    public class UdpExampleApplication {
+
+    public static void main(String[] args) throws Exception {
+
+        // ---- SERVER ----
+        DatagramSocket serverSocket = new DatagramSocket(6000);
+
+        byte[] receiveBuffer = new byte[1024];
+        DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+
+        serverSocket.receive(receivePacket); // receive data
+        String receivedData = new String(receivePacket.getData());
+        System.out.println("Received: " + receivedData);
+
+        // ---- CLIENT ----
+        DatagramSocket clientSocket = new DatagramSocket();
+
+        String msg = "Hello UDP Server";
+        byte[] sendData = msg.getBytes();
+
+        InetAddress ip = InetAddress.getByName("localhost");
+        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, ip, 6000);
+
+        clientSocket.send(sendPacket);
+
+        clientSocket.close();
+        serverSocket.close();
+        }
+    }
+
+
+Explanation:
+No connection establishment is required.
+Also faster but packets may be lost.
+
+
