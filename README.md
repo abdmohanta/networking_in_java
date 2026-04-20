@@ -154,9 +154,15 @@ Access using browser → http://localhost:8080/hello
 
 Difference Table (Interview Important)
 
-Feature     	TCP                 	UDP	                HTTP
-Type	            Connection-oriented	Connectionless   	    Application protocol
-Reliability	      High	                  Low	                High (built on TCP)
-Speed	            Slower	            Faster	          Medium
-Use Case	      Chat, file transfer	Streaming, gaming	    Web APIs
-Java Classes	Socket	            DatagramSocket	    RestController
+    Feature     	TCP                 	UDP	                HTTP
+    Type	            Connection-oriented	Connectionless   	    Application protocol
+    Reliability	      High	                  Low	                High (built on TCP)
+    Speed	            Slower	            Faster	          Medium
+    Use Case	      Chat, file transfer	Streaming, gaming	    Web APIs
+    Java Classes	      Socket	            DatagramSocket	    RestController
+
+
+
+TCP → Reliable (used in banking, messaging)
+UDP → Fast (used in video streaming, games)
+HTTP → Web communication (used in APIs)
