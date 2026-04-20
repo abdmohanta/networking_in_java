@@ -13,12 +13,13 @@ Client sends a message to server → server receives and responds.
 
 SpringBoot example :
 
-package com.example.network;
 
-import java.io.*;
-import java.net.*;
+     package com.example.network;
 
-public class TcpExampleApplication {
+     import java.io.*;
+     import java.net.*;
+
+    public class TcpExampleApplication {
 
     public static void main(String[] args) throws Exception {
 
@@ -55,8 +56,8 @@ public class TcpExampleApplication {
         System.out.println("Server says: " + clientReader.readLine());
 
         client.close();
+       }
     }
-}
 
 
 Explanation:
