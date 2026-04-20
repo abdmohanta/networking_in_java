@@ -117,3 +117,38 @@ No connection establishment is required.
 Also faster but packets may be lost.
 
 
+3. HTTP (HyperText Transfer Protocol)
+   Mainly HTTP is used for web communication (REST APIs).
+
+Uses:
+Spring Boot (@RestController)
+HttpURLConnection or WebClient
+
+Client sends GET request → server returns JSON response
+
+Example:
+
+    package com.example.network;
+    import org.springframework.boot.*;
+    import org.springframework.boot.autoconfigure.*;
+    import org.springframework.web.bind.annotation.*;
+
+    @SpringBootApplication
+    @RestController
+    public class HttpExampleApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(HttpExampleApplication.class, args);
+    }
+
+    // Simple GET API
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello from HTTP Server";
+       }
+    }
+
+Runs on port 8080 by default
+Access using browser → http://localhost:8080/hello
+
+
