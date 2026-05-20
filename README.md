@@ -174,3 +174,106 @@ will update few more soon
 
 
 Java Developer
+
+
+
+
+
+
+package com.debasish.arraypractice.oneDimensionalArray;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class OneDimensionalArray98 {
+
+    public static void main(String[] args) {
+
+        // ======================================
+        // PROBLEM 99: ROTTING ORANGES
+        // ======================================
+
+        // Step 1: create grid
+        int[][] grid = {
+                {2, 1, 1},
+                {1, 1, 0},
+                {0, 1, 1}
+        };
+
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        // queue stores row and column
+        Queue<int[]> queue = new LinkedList<>();
+
+        int fresh = 0;
+
+        // Step 2: count fresh oranges
+        // and store rotten oranges
+        for (int i = 0; i < rows; i++) {
+
+            for (int j = 0; j < cols; j++) {
+
+                if (grid[i][j] == 2) {
+                    queue.offer(new int[]{i, j});
+                }
+
+                if (grid[i][j] == 1) {
+                    fresh++;
+                }
+            }
+        }
+
+        // Step 3: directions
+        int[] rowDir = {-1, 1, 0, 0};
+        int[] colDir = {0, 0, -1, 1};
+
+        int minutes = 0;
+
+        // Step 4: BFS traversal
+        while (!queue.isEmpty() && fresh > 0) {
+
+            int size = queue.size();
+
+            for (int i = 0; i < size; i++) {
+
+                int[] current = queue.poll();
+
+                int row = current[0];
+                int col = current[1];
+
+                // check 4 directions
+                for (int j = 0; j < 4; j++) {
+
+                    int newRow = row + rowDir[j];
+                    int newCol = col + colDir[j];
+
+                    // valid fresh orange
+                    if (newRow >= 0 && newCol >= 0
+                            && newRow < rows && newCol < cols
+                            && grid[newRow][newCol] == 1) {
+
+                        // make rotten
+                        grid[newRow][newCol] = 2;
+
+                        // reduce fresh count
+                        fresh--;
+
+                        // add to queue
+                        queue.offer(new int[]{newRow, newCol});
+                    }
+                }
+            }
+
+            minutes++;
+        }
+
+        // Step 5: print result
+        if (fresh == 0) {
+            System.out.println("Minutes Required: " + minutes);
+        } else {
+            System.out.println("Not Possible");
+        }
+
+    }
+}
